@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  color: #18212f;
+  background: #f5f7fb;
+  font-family: 'DM Sans', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+button {
+  font: inherit;
+}
+
+.calculator-page {
+  display: grid;
+  min-height: 100vh;
+  padding: 32px 20px;
+  place-items: center;
+}
+
+.calculator {
+  width: min(100%, 390px);
+  padding: 28px;
+  border: 1px solid #e4e9f1;
+  border-radius: 28px;
+  background: #fff;
+  box-shadow: 0 24px 60px rgb(38 54 81 / 12%);
+}
+
+.calculator-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  margin: 0 0 3px;
+  color: #8d98a8;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.display-panel {
+  display: flex;
+  min-height: 122px;
+  padding: 16px 20px;
+  border-radius: 18px;
+  background: #f4f7fb;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: right;
+}
+
+.calculation {
+  min-height: 19px;
+  margin: 0;
+  color: #8490a1;
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+}
+
+.display {
+  overflow: hidden;
+  color: #18212f;
+  font-family: 'DM Mono', monospace;
+  font-size: clamp(32px, 9vw, 48px);
+  font-weight: 500;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.keypad {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.key {
+  height: 58px;
+  padding: 0;
+  border: 0;
+  border-radius: 14px;
+  color: #263245;
+  background: #f4f7fb;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+  transition: transform 120ms ease, background 120ms ease;
+}
+
+.key:hover {
+  background: #e9eef6;
+}
+
+.key:active {
+  transform: scale(0.96);
+}
+
+.key:focus-visible {
+  outline: 3px solid #a6cbff;
+  outline-offset: 2px;
+}
+
+.key-utility {
+  color: #667386;
+  background: #edf1f6;
+}
+
+.key-operator {
+  color: #246dd6;
+  background: #e8f1ff;
+}
+
+.key-equals {
+  color: #fff;
+  background: #246dd6;
+  box-shadow: 0 7px 14px rgb(36 109 214 / 24%);
+}
+
+.key-equals:hover {
+  background: #195ebd;
+}
+
+.key-zero {
+  grid-column: span 2;
+}
+
+.keyboard-hint {
+  margin: 16px 0 0;
+  color: #8d98a8;
+  font-size: 13px;
+  text-align: center;
+}
+
+@media (max-width: 440px) {
+  .calculator-page {
+    padding: 16px;
+  }
+
+  .calculator {
+    padding: 22px;
+    border-radius: 24px;
+  }
+
+  .key {
+    height: 54px;
+  }
+}
