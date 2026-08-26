@@ -13,6 +13,14 @@
           <p class="eyebrow">CALCULATOR</p>
           <h1>電卓</h1>
         </div>
+        <form class="natural-language-form" id="natural-language-form">
+          <label class="natural-language-label" for="natural-language-input">文章で計算する</label>
+          <div class="natural-language-controls">
+            <input class="natural-language-input" id="natural-language-input" type="text" placeholder="例：25に18を足して" autocomplete="off" />
+            <button class="natural-language-submit" type="submit">計算</button>
+          </div>
+          <p class="natural-language-help" id="natural-language-help">「100の15%」のように入力してください</p>
+        </form>
         <div class="display-panel" aria-live="polite" aria-atomic="true">
           <p class="calculation" id="calculation">&nbsp;</p>
           <output class="display" id="display">0</output>

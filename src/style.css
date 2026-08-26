@@ -57,6 +57,65 @@ h1 {
   line-height: 1;
 }
 
+.natural-language-form {
+  margin-bottom: 16px;
+}
+
+.natural-language-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #667386;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.natural-language-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.natural-language-input {
+  min-width: 0;
+  flex: 1;
+  padding: 11px 12px;
+  border: 1px solid #dfe5ee;
+  border-radius: 10px;
+  color: #263245;
+  background: #fff;
+  font-size: 14px;
+  outline: 0;
+}
+
+.natural-language-input:focus {
+  border-color: #246dd6;
+  box-shadow: 0 0 0 3px rgb(36 109 214 / 12%);
+}
+
+.natural-language-submit {
+  padding: 0 14px;
+  border: 0;
+  border-radius: 10px;
+  color: #246dd6;
+  background: #e8f1ff;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.natural-language-submit:hover {
+  background: #dceaff;
+}
+
+.natural-language-help {
+  margin: 7px 0 0;
+  color: #8d98a8;
+  font-size: 11px;
+}
+
+.natural-language-error {
+  color: #c45454;
+}
+
 .display-panel {
   display: flex;
   min-height: 122px;
