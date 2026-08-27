@@ -4,10 +4,12 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "start": "vite --host 0.0.0.0",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite --host 0.0.0.0"
   },
+  "packageManager": "npm@10",
   "devDependencies": {
     "vite": "^6.1.0"
   }
