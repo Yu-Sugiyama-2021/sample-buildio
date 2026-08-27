@@ -3,6 +3,9 @@ import './style.css';
 const display = document.querySelector('#display');
 const calculation = document.querySelector('#calculation');
 const keypad = document.querySelector('.keypad');
+const naturalLanguageForm = document.querySelector('#natural-language-form');
+const naturalLanguageInput = document.querySelector('#natural-language-input');
+const naturalLanguageHelp = document.querySelector('#natural-language-help');
 
 let current = '0';
 let previous = null;
@@ -26,6 +29,33 @@ function reset() {
   previous = null;
   operator = null;
   shouldReplace = false;
+}
+
+function parseNaturalLanguage(query) {
+  const normalizedQuery = query.replaceAll(',', '').replaceAll('％', '%').trim();
+  const numbers = normalizedQuery.match(/-?\d+(?:\.\d+)?/g)?.map(Number) ?? [];
+  if (numbers.length < 2) return null;
+
+  let result;
+  let symbol;
+  if (normalizedQuery.includes('%') || normalizedQuery.includes('パーセント')) {
+    result = numbers[0] * numbers[1] / 100;
+    symbol = '%';
+  } else if (/[足加]\s*して|\s*\+|足す|加える/.test(normalizedQuery)) {
+    result = numbers[0] + numbers[1];
+    symbol = '+';
+  } else if (/引いて|引く|減らして|\s*-/.test(normalizedQuery)) {
+    result = numbers[0] - numbers[1];
+    symbol = '−';
+  } else if (/掛け|かけ|乗じ|\s*\*/.test(normalizedQuery)) {
+    result = numbers[0] * numbers[1];
+    symbol = '×';
+  } else if (/割って|割る|\s*\//.test(normalizedQuery)) {
+    result = numbers[1] === 0 ? NaN : numbers[0] / numbers[1];
+    symbol = '÷';
+  } else return null;
+
+  return { result: formatNumber(result), expression: `${numbers[0]} ${symbol} ${numbers[1]}` };
 }
 
 function inputNumber(number) {
@@ -92,6 +122,26 @@ keypad.addEventListener('click', (event) => {
     updateDisplay();
   }
   if (key.dataset.action) executeAction(key.dataset.action);
+});
+
+naturalLanguageForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const query = naturalLanguageInput.value.trim();
+  const parsed = parseNaturalLanguage(query);
+
+  if (!parsed) {
+    naturalLanguageHelp.textContent = '数字と「足して」「引いて」「掛けて」「割って」を使ってください';
+    naturalLanguageHelp.classList.add('natural-language-error');
+    return;
+  }
+
+  reset();
+  current = parsed.result;
+  shouldReplace = true;
+  updateDisplay();
+  calculation.textContent = `${parsed.expression} =`;
+  naturalLanguageHelp.textContent = '計算しました。続けて電卓キーも使えます';
+  naturalLanguageHelp.classList.remove('natural-language-error');
 });
 
 document.addEventListener('keydown', (event) => {
